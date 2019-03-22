@@ -1,0 +1,76 @@
+# Project Bigfoot - Thanks, Melissa!
+
+version: '3'
+
+services:
+
+  # Client
+  bigfoot-client:
+    build:
+      context: ./docker/angular
+    command: npm run docker
+    environment:
+      NODE_ENV: ${NODE_ENV}
+    ports: 
+      - 4200:4200
+    networks: 
+      - bigfoot
+    volumes:
+      - ${CLIENT_DIR}:/usr/src/app
+
+  # Server
+  bigfoot-server:
+    build:
+      context: ./docker/node
+    command: npm run docker
+    restart: always
+    environment:
+      NODE_ENV: ${NODE_ENV}
+    ports:
+      - 3000:3000
+      - 9229:9229
+    networks:
+      - bigfoot
+    volumes:
+      - ${SERVER_DIR}:/usr/src/app
+
+  # Database
+  bigfoot-mysql:
+    image: bigfoot-mysql
+    build:
+      context: ./docker/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'no'
+      MYSQL_RANDOM_ROOT_PASSWORD: 'no'
+    ports:
+      - 3306:3306
+    networks:
+      - bigfoot
+    volumes:
+      - ${MYSQL_DATA_DIR-./data/mysql}:/var/lib/mysql
+      - ${MYSQL_LOG_DIR-./logs/mysql}:/var/log/mysql
+  
+  # Database Interface
+  bigfoot-phpmyadmin:
+    image: bigfoot-phpmyadmin
+    build:
+      context: ./docker/phpmyadmin
+    environment:
+      PMA_HOST: bigfoot-mysql
+      PMA_PORT: 3306
+    ports:
+      - 8080:80
+    networks:
+      - bigfoot
+    volumes:
+      - /session
+  
+networks: 
+  bigfoot:
+    driver: bridge
+  
