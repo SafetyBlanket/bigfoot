@@ -1,27 +1,35 @@
-# Www
+# Project Bigfoot
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.6.
+This project is a living fullstack JavaScript environment.  
 
-## Development server
+This is a customizable fullstack Javascript environment that uses:
+* [Angular 7](https://angular.io/) - Great frontend framework for constructing SPAs.
+* [Angular Material](https://material.angular.io/) - Great looking styling for Angular applications.
+* [Angular Flex](https://github.com/angular/flex-layout/wiki) - 
+* [Express](https://expressjs.com/) - Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
+* [Swagger](https://swagger.io/) - The Best APIs are Built with Swagger Tools - RESTful interface.
+* [MySQL8](https://www.mysql.com/) - Markdown parser done right. Fast and easy to extend.
+* [PHPmyadmin](https://www.phpmyadmin.net/) - great UI boilerplate for modern web apps
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Running for development
 
-## Code scaffolding
+Run the project in development environment by typing the following:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```sh
+    docker-compose -f docker-compose-dev.yml up
+```
+And that's it! Co2mpose will start up all of the above services you're ready to go!
 
-## Build
+The node projects inside the system have special Docker build pipelines handle setup and installation which are also platform agnostic so you shouldn't require any changes going from Window/Mac/Linux.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+The dockerfile sets the context of the container to the project root directory for the UI container.  This means you can terminal into a container that has all the tools required to interact with the application without requiring tools to be installed on your host machine.  Execute commands on the UI container by typing into the terminal: 
 
-## Running unit tests
+```sh
+    docker container exec -it [container id] bash
+    ng g m /modules/mymodule 
+    ...
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Running for production
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+//TODO

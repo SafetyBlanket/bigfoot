@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
+
+// Pages
 import { 
   AboutModule, 
   BlogModule, 
@@ -10,6 +12,10 @@ import {
   NotFoundModule, 
   ProjectsModule, 
   SandboxModule } from './modules';
+
+// Services
+import { NavigationService } from './core/services/navigation/navigation.service';
+
 import { AppComponent } from './app.component';
 import { DefaultComponent } from './layouts/default/default.component';
 
@@ -26,11 +32,13 @@ import { DefaultComponent } from './layouts/default/default.component';
     AboutModule,
     BlogModule,
     HomeModule,
-    NotFoundModule,
     ProjectsModule,
-    SandboxModule
+    SandboxModule,
+    NotFoundModule,
   ],
-  providers: [],
+  providers: [
+    NavigationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
