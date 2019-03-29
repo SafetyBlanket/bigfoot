@@ -1,4 +1,4 @@
-export interface CompanyAddress {
+export interface OrganizationAddress {
     street1: string;
     street2?: string;
     city: string;
@@ -9,7 +9,7 @@ export interface CompanyAddress {
     type?: string;
 }
 
-export interface CompanyPhone {
+export interface OrganizationPhone {
     type: string;
     countryCode: string;
     areaCode: string;
@@ -17,17 +17,17 @@ export interface CompanyPhone {
     lineNumber: string;
 }
 
-export interface CompanyYears {
+export interface OrganizationYears {
     from: Date;
     to: Date;
 }
 
-export interface Company {
+export interface Organization {
     url: string;
     img: string;
     name: string;
     email?: string;
-    address: CompanyAddress[];
+    address: OrganizationAddress[];
     description?: string;
     tags?: string[];
 }
@@ -36,24 +36,50 @@ export interface Reference {
     firstName: string;
     lastName: string;
     middle?: string;
-    phone: CompanyPhone;
+    phone: OrganizationPhone;
     title: string;
     responsibilities: string[];
     relationship: string;
-    address: CompanyAddress;
+    address: OrganizationAddress;
     email: string;
 }
 
 export interface WorkExperience {
     position: string;
-    company: Company;
+    company: Organization;
     description: string;
-    duration: CompanyYears[];
+    duration: OrganizationYears[];
     responsibilities: string[];
     references?: Reference;
 }
 
-export const LaserAppSoftware: Company = {
+export const Army: Organization = {
+    url: `https://www.goarmy.com/`,
+    img: `assets/img/companies/army.png`,
+    name: `United States Army`,
+    address: [{
+        street1: `1736 Waal St; STOP D`,
+        city: `Fort Bragg`,
+        state: `North Carolina`,
+        zip: `28310`,
+        county: `Cumberland County`,
+        country: `United States`,
+        type: `Military`
+    }],
+    description: ``,
+    tags: [``]
+}
+
+export const Starside: Organization = {
+    url: `http://www.starside.com/`,
+    img: `assets/img/companies/starside.gif`,
+    name: `Starside Security`,
+    address: [],
+    description: ``,
+    tags: []
+}
+
+export const LaserAppSoftware: Organization = {
     url: `http://www.laserapp.com/`,
     img: `assets/img/companies/laserapp.png`,
     name: `Laser App Software`,
@@ -71,10 +97,10 @@ export const LaserAppSoftware: Company = {
     over 70 integrations and over 33,000 forms in the library, we collect 
     the most financial industry forms and fill them out automatically with 
     more client data than any other system.`,
-    tags: ['Linux', 'Apache', 'MySQL', 'PHP', 'HTML', 'JavaScript', 'Architecture']
+    tags: [`Linux`, `Apache`, `MySQL`, `PHP`, `HTML`, `JavaScript`, `Architecture`]
 }
 
-export const FriarTuxShop: Company = {
+export const FriarTuxShop: Organization = {
     url: `https://www.friartux.com/`,
     img: `assets/img/companies/friartux.png`,
     name: `Friar Tux Shop`,
@@ -91,7 +117,7 @@ export const FriarTuxShop: Company = {
     tags: [`PHP`, `CodeIgniter3`, `IIS`, `AngularJS`, `Ionic2`, `SPA`, `Mobile Responsive`]
 }
 
-export const BlackSwanData: Company = {
+export const BlackSwanData: Organization = {
     url: `https://www.blackswan.com/`,
     img: `assets/img/companies/blackswan.png`,
     name: `Black Swan Data`,
@@ -108,7 +134,7 @@ export const BlackSwanData: Company = {
     tags: [`JavaScript`, `AngularJS`, `Angular`, `Gulp`, `Express`, `Node`, `Swagger`, `REST`]
 }
 
-export const Panasonic: Company = {
+export const Panasonic: Organization = {
     url: `https://www.panasonic.aero/`,
     img: `assets/img/companies/panasonic.png`,
     name: `Panasonic Avionics`,
@@ -125,7 +151,7 @@ export const Panasonic: Company = {
     tags: []
 }
 
-export const UnitedHealthcare: Company = {
+export const UnitedHealthcare: Organization = {
     url: `https://www.uhc.com/`,
     img: `assets/img/companies/uhc.jpg`,
     name: `United Healthcare`,
@@ -141,7 +167,7 @@ export const UnitedHealthcare: Company = {
     tags: []
 }
 
-export const Infosys: Company = {
+export const Infosys: Organization = {
     url: `https://www.infosys.com/`,
     img: `assets/img/companies/infosys.jpg`,
     name: `InfoSys`,
@@ -157,7 +183,7 @@ export const Infosys: Company = {
     tags: []
 }
 
-export const Boeing: Company = {
+export const Boeing: Organization = {
     url: `https://www.boeing.com/`,
     img: `assets/img/companies/boeing.png`,
     name: `Boeing`,
@@ -171,10 +197,11 @@ export const Boeing: Company = {
         type: `Aerospace`
     }],
     description: ``,
-    tags: ['Avionics', 'Aerospace']
+    tags: [`Avionics`, `Aerospace`]
 }
 
-export const Companies: Company[] = [
+export const Companies: Organization[] = [
+    Army,
     LaserAppSoftware,
     FriarTuxShop,
     BlackSwanData,
@@ -185,7 +212,21 @@ export const Companies: Company[] = [
 ]
 
 export const WorkHistory: WorkExperience[] = [{
-    position: 'Form Technician',
+    position: `Paratrooper`,
+    company: Army,
+    description: `Responsible for all aspects of development including 
+        gathering requirements, wire framing, development, testing, and 
+        deployment.  Routine tasks include database design and 
+        administration (keys, foreign keys, indexing, relational, schema, 
+        constraints, joins, views, procedures, normalization), website 
+        and server maintenance, unit testing, and mobile web application 
+        development.  Daily duties also included assisting Dev Ops and 
+        interacting with end users for feedback.`,
+    duration: [{ from: new Date(2004, 6), to: new Date(2008, 8) }],
+    responsibilities: [
+        ``
+    ]},{
+    position: `Form Technician`,
     company: LaserAppSoftware,
     description: `Worked on SaaS product where user forms auto populate 
         fields for large database and CRMs.  Daily tasks include scripting user 
@@ -197,9 +238,8 @@ export const WorkHistory: WorkExperience[] = [{
         `Created various website components utilizing asynchronous JavaScript (AJAX) to create responsive sites.`,
         `Performed database design and administration using MySQL and efficient relational models.`,
         `Best performing data technician for multiple quarters and became responsible for training and advising in daily operations.`
-    ]
-}, {
-    position: 'PHP Developer/Principal Developer',
+    ]}, {
+    position: `PHP Developer/Principal Developer`,
     company: FriarTuxShop,
     description: `Responsible for all aspects of development including gathering requirements, 
         wire framing, development, testing, and deployment.  Routine tasks include database design 
@@ -213,17 +253,17 @@ export const WorkHistory: WorkExperience[] = [{
         `Develops secure and mobile first public facing websites, single page applications, and third-party API integrations (UPS, PayPal, Twitter, SMS) and JSON.`,
         `Created a mobile first tablet inventory system that allows users to scan inventory and manage stock using HTML, CSS, Bootstrap, JavaScript, AngularJS, Angular2+, Ionic2,  jQuery, PHP + CodeIgniter, NodeJS + Express, JSON, REST, and Oracle Database SQL.`,
         `Creates mobile first and responsive sites that are sold as end-user software solutions – Sites are responsive and utilize a user account system that customizes the user experience based on access type.  Software is customizable by non-developers and features hook for customization.`
-    ]
-}, {
-    position: 'Front End Developer',
+    ]}, {
+    position: `Front End Developer`,
     company: BlackSwanData,
-    description: 'Frontend developer responsible for development and troubleshooting of customer facing portals.  Develops solutions for and integrates systems to facilitate airline inflight entertainement',
+    description: `Frontend developer responsible for development and troubleshooting of customer facing portals.  Develops solutions for and integrates systems to facilitate airline inflight entertainement`,
     duration: [{ from: new Date(2017, 10), to: new Date(2018, 7) }],
-    responsibilities: []
-}, {
-    position: 'Full Stack Developer',
+    responsibilities: [
+    ]}, {
+    position: `Full Stack Developer`,
     company: BlackSwanData,
-    description: '',
+    description: ``,
     duration: [{ from: new Date(2018, 8), to: new Date(2018, 10) }],
     responsibilities: []
 }]
+

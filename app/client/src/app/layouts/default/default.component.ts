@@ -1,10 +1,11 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Subject } from 'rxjs';
-import { config } from '../../core/config';
+import { config } from '@bigfoot-core/config'
 import { filter } from 'rxjs/operators';
-import { NavigationService } from '../../core/services/navigation/navigation.service';
-import { MatDrawer } from '@angular/material';
+import { NavigationService } from '@bigfoot-core/services';
+import { MatDrawer, MatRipple } from '@angular/material';
+import { TweenMax } from 'gsap';
 
 @Component({
   selector: 'app-default',
@@ -20,6 +21,7 @@ export class DefaultComponent implements OnInit {
   loading     = false;
 
   @ViewChild('sidenav') sideNavigation: MatDrawer;
+  @ViewChild(MatRipple) titleRipple: MatRipple;
 
   constructor(
     private router: Router,
@@ -27,7 +29,10 @@ export class DefaultComponent implements OnInit {
   ) { 
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(event => this.active$.next(this.router.url.split('/')[1]));
+      .subscribe(event => {
+        this.active$.next(this.router.url.split('/')[1]);
+        this.titleRipple.launch({});
+      });
 
     this.navigationService.title$.subscribe(title => { 
       this.pageTitle = title;
@@ -38,7 +43,17 @@ export class DefaultComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
+    // Navigation service setup
     this.navigationService.sideNav = this.sideNavigation;
+    this.navigationService.sideNav.openedStart.subscribe(_ => {
+      TweenMax.to(document.getElementById('drawerStatus'), .25, { rotation: 180 });
+    });
+    this.navigationService.sideNav.closedStart.subscribe(_ => {
+      TweenMax.to(document.getElementById('drawerStatus'), .25, { rotation: 0 });      
+    });
+    
+    
+
   }
 
   toggleSidenav(): void {

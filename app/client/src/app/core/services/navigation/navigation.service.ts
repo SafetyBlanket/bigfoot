@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { MatSidenav, MatDrawer } from '@angular/material';
+import { MatDrawer } from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
