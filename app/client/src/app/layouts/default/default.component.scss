@@ -1,0 +1,41 @@
+mat-drawer-container {
+  height: 100%;
+}
+
+.brand {
+  padding: 10px 0 10px 0;
+  width: 150px;
+  overflow: hidden;
+
+  img {
+    height: 100px;
+    margin: 0 auto 0 auto;
+  }
+}
+
+mat-drawer-content {
+  width: 100%;
+  z-index:0;
+}
+
+mat-icon {
+  position: relative;
+}
+
+#nav-top {
+  z-index: 1000;
+  opacity: 1;
+}
+
+#main-content {
+  padding: 20px;
+  margin: 0 auto 0 auto;
+}
+
+.mat-list-icon {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.page-title {
+  padding-left: 20px;
+}

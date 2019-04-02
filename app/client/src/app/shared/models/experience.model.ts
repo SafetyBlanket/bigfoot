@@ -1,46 +1,19 @@
-export interface OrganizationAddress {
-    street1: string;
-    street2?: string;
-    city: string;
-    state: string;
-    zip: string;
-    county?: string;
-    country: string;
-    type?: string;
-}
-
-export interface OrganizationPhone {
-    type: string;
-    countryCode: string;
-    areaCode: string;
-    prefix: string;
-    lineNumber: string;
-}
+import { Address, Phone, Organization } from './location.model';
 
 export interface OrganizationYears {
     from: Date;
     to: Date;
 }
 
-export interface Organization {
-    url: string;
-    img: string;
-    name: string;
-    email?: string;
-    address: OrganizationAddress[];
-    description?: string;
-    tags?: string[];
-}
-
 export interface Reference {
     firstName: string;
     lastName: string;
     middle?: string;
-    phone: OrganizationPhone;
+    phone: Phone;
     title: string;
     responsibilities: string[];
     relationship: string;
-    address: OrganizationAddress;
+    address: Address;
     email: string;
 }
 

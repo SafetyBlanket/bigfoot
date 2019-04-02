@@ -5,7 +5,7 @@ import { PageComponent } from '@bigfoot-shared/components';
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
-  styleUrls: ['./about.component.sass']
+  styleUrls: ['./about.component.scss']
 })
 export class AboutComponent extends PageComponent implements OnInit {
 
