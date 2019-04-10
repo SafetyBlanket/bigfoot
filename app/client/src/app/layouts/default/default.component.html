@@ -11,7 +11,7 @@
 <mat-drawer-container>
 
   <!-- Drawer -->
-  <mat-drawer #sidenav id="sidenav" color="accent" mode="over" class="mat-elevation-z6">
+  <mat-drawer #sidenav (click)="sidenav.toggle()" id="sidenav" color="accent" mode="side" class="mat-elevation-z6">
     <mat-nav-list>
       <mat-list-item routerLink="/" disableRipple="true" class="brand">
         <img src="assets/img/placeholder.jpg" alt="Site logo">

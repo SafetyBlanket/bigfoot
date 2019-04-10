@@ -1,0 +1,13 @@
+.mat-card-image {
+    height: 100%;
+    overflow: hidden;
+}
+
+.card-image {
+    transform: scale(1.2);
+    transition: ease .25s;
+}
+
+.card-image:hover {
+    transform: scale(1.5);
+}

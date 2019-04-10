@@ -4,11 +4,57 @@
       <mat-card-title>William Moore</mat-card-title>
       <mat-card-subtitle>Software Developer</mat-card-subtitle>
     </mat-card-header>
-    <mat-card-content>
-      <h3>Summary</h3>
-      <p>Results-driven full-stack software developer with 5+ years of software development experience. Experienced in
-        all phases of development from analysis to delivery. Multi-faceted hands on experience across multiple platforms
-        and tools.</p>
+    <mat-card-content fxLayout="column" fxLayoutGap="50px">
+
+      <!-- Summary -->
+      <div id="summary">
+        <h3>Summary</h3>
+        <p>Results-driven full-stack software developer with 5+ years of          software development experience. Experienced in
+          all phases of development from analysis to delivery. Multi-faceted hands on experience across multiple
+          platforms
+          and tools.</p>
+      </div>
+
+      <!-- Education -->
+      <div id="education" fxLayoutGap="20px">
+        <h3>Education</h3>
+        <app-info-card
+          *ngFor="let school of education" 
+          [avatar]="school.logo" 
+          [title]="school.name"
+          [subtitle]="school.degrees"
+          [description]="school.description" 
+          [list]="school.accolades"
+          [tags]="school.tags" 
+          [actions]="school.actions">
+        </app-info-card>
+      </div>
+
+      <!-- Expertise -->
+      <div id="expertise">
+        <h3>Expertise</h3>
+        <app-info-card
+          [tags]="">
+        </app-info-card>
+      </div>
+
+      <!-- Experience -->
+      <div id="expertise" fxLayoutGap="20px">
+        <h3>Experience</h3>
+        <app-info-card
+          *ngFor="let work of experience"
+          avatar="work.img"
+          [title]="work.company.name" 
+          [subtitle]="work.position"
+          [description]="work.description" 
+          [list]="work.responsibilities"
+          [tags]="work.tags"
+          [actions]="work.actions">
+        </app-info-card>
+      </div>
+
+      <!-- Hobbies -->
+
     </mat-card-content>
   </mat-card>
 </div>

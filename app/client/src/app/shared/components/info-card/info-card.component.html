@@ -1,0 +1,35 @@
+<mat-card fxLayout="column">
+  <mat-card-header>
+    <div *ngIf="avatar" [ngStyle]="{ 'background-image': 'url(' + avatar.src + ')', 'background-size': 'cover' }"
+      mat-card-avatar></div>
+    <mat-card-title>{{ title }}</mat-card-title>
+    <mat-card-subtitle>{{ subtitle }}</mat-card-subtitle>
+  </mat-card-header>
+  <div *ngIf="image" class="mat-card-image">
+    <img mat-card-image [style.height]="image.height" src="{{ image.src }}" alt="{{ image?.alt }}" class="card-image">
+  </div>
+  <mat-card-content>
+
+    <!-- Descripton -->
+    <div class="description" *ngIf="description">
+      <p>{{ description }}</p>
+    </div>
+
+    <ul *ngIf="list">
+      <li *ngFor="let item of list">
+        <p>{{ item }}</p>
+      </li>
+    </ul>
+
+    <!-- Tags -->
+    <div class="tags" *ngIf="tags">
+      <mat-chip-list>
+        <mat-chip *ngFor="let tag of tags" class="tag">{{ tag }}</mat-chip>
+      </mat-chip-list>
+    </div>
+
+  </mat-card-content>
+  <mat-card-actions *ngIf="actions">
+    <a *ngFor="let action of actions" href="{{ action.url }}" target="_blank" mat-button>{{ action.name }}</a>
+  </mat-card-actions>
+</mat-card>

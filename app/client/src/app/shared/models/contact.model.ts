@@ -1,6 +1,11 @@
 export interface Organization {
     url: string;
-    img: string;
+    img: { 
+        src: string; 
+        alt: string; 
+        height?: string; 
+        width?: string 
+    };
     name: string;
     email?: string;
     address: Array<Address>;

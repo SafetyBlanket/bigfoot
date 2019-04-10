@@ -21,7 +21,7 @@ services:
   bigfoot-server:
     build:
       context: ./docker/node
-    command: npm run docker
+    command: npm run docker:slim
     restart: always
     environment:
       NODE_ENV: ${NODE_ENV}

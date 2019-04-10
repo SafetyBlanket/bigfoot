@@ -2,19 +2,27 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './material.module';
-import { ContentContainerDirective } from './directives';
+import {  
+  InfoCardComponent
+} from './components';
+import { 
+  ContentContainerDirective, 
+} from './directives';
 
 @NgModule({
   declarations: [
-    ContentContainerDirective
+    ContentContainerDirective,
+    InfoCardComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MaterialModule
   ],
   exports: [
     MaterialModule,
     FlexLayoutModule,
-    ContentContainerDirective
+    ContentContainerDirective,
+    InfoCardComponent
   ]
 })
 export class SharedModule { }

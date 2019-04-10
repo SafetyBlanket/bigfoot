@@ -5,19 +5,20 @@ import { NavigationService } from '../../../core/services';
 export class PageComponent implements OnDestroy {
   loading = false;
 
-  /**
+  /*
    * @param title Title of page component to be displayed in title bar.
    * @param navigationService Service to update page heading.
    */
-  constructor( 
-    protected title: string,
-    protected navigationService: NavigationService 
-    ) { this.setTitle(title) }
+  constructor( title: string, protected navigationService: NavigationService 
+    ) { this.title = title }
 
   ngOnDestroy() { this.loading = false }
 
-  /**
+  /*
    * @param title Update title bar at top of page
    */
-  private setTitle(title: string) { this.navigationService.title$.next(title) }
+  protected set title(title: string) {
+    this.navigationService.title$.next(title);
+  }
+
 }
